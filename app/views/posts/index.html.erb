@@ -1,0 +1,42 @@
+<!-- app/views/posts/index.html.erb -->
+
+<h1>Listing posts</h1>
+
+<table>
+  <!-- your existing table rows -->
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.body %></td>
+      <td><%= post.number %></td>
+      <td><%= link_to 'Show', post %></td>
+      <td>
+        <%= link_to 'Generate PDF', generate_pdf_post_path(post, format: :pdf), id: "generate-pdf-link" %>
+      </td>
+      <!-- other actions as needed -->
+    </tr>
+  <% end %>
+</table>
+
+
+<!-- Add the following script to trigger the print option -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var generatePdfLink = document.getElementById('generate-pdf-link');
+
+    if (generatePdfLink) {
+      generatePdfLink.addEventListener('click', function() {
+        // Open the generated PDF in a new window
+        var newWindow = window.open(this.href, '_blank');
+
+        // Trigger the print option after the PDF has loaded
+        newWindow.onload = function() {
+          newWindow.print();
+        };
+
+        return false;
+      });
+    }
+  });
+</script>
