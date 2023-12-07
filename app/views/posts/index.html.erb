@@ -12,7 +12,7 @@
       <td><%= post.number %></td>
       <td><%= link_to 'Show', post %></td>
       <td>
-        <%= link_to 'Generate PDF', generate_pdf_post_path(post, format: :pdf), id: "generate-pdf-link" %>
+        <%= link_to 'Generate PDF file', generate_pdf_post_path(post, format: :pdf), id: "generate-pdf-link" %>
       </td>
       <!-- other actions as needed -->
     </tr>
